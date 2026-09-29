@@ -1,0 +1,1 @@
+# Agregar Django aquí cuando confirmemos la versión exigida por el curso.
