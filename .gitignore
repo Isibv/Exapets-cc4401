@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Python
 __pycache__/
 *.py[cod]
@@ -36,3 +37,10 @@ Thumbs.db
 htmlcov/
 
 
+=======
+venv/
+__pycache__/
+*.pyc
+db.sqlite3
+.env
+>>>>>>> origin/main
