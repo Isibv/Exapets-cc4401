@@ -1,0 +1,36 @@
+{% extends 'mascotas/base_mascotas.html' %}
+
+{% block title %}Mis mascotas - ExaPets{% endblock %}
+
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h2 class="mb-0">Mis mascotas</h2>
+    <a href="{% url 'mascotas:crear_mascota' %}" class="btn btn-exapet-add">+ Registrar mascota</a>
+</div>
+
+{% if mascotas %}
+    <div class="row g-3">
+        {% for mascota in mascotas %}
+            <div class="col-12 col-md-6 col-lg-4">
+                <div class="card card-exapet h-100">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ mascota.nombre }}</h5>
+                        <p class="mb-2">
+                            <span class="badge-exapet">{{ mascota.especie }}</span>
+                        </p>
+                        <p class="text-muted mb-3">
+                            {% if mascota.raza %}{{ mascota.raza }} · {% endif %}{{ mascota.get_sexo_display }}
+                        </p>
+                        <a href="{% url 'mascotas:detalle_mascota' mascota.pk %}" class="stretched-link">Ver ficha</a>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% else %}
+    <div class="card card-exapet text-center p-5">
+        <h4>Aún no tienes mascotas registradas</h4>
+        <p class="text-muted">Registra a tu primera mascota para comenzar a guardar su información.</p>
+    </div>
+{% endif %}
+{% endblock %}
