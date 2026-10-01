@@ -1,7 +1,7 @@
 from django.db import models
 from django.core.validators import MinValueValidator, MaxValueValidator
 from django.utils import timezone
-
+from django.conf import settings
 
 OPCIONES_SEXO= [
     ("M","Macho"), #M lo que ve la bd y Macho lo que ve el usuario
@@ -18,8 +18,8 @@ class Mascota(models.Model):
     sexo = models.CharField(max_length= 1,choices=OPCIONES_SEXO)
     fecha_de_nacimiento = models.DateField(null = True, blank = True, validators=[MaxValueValidator(todayDate)])
     peso = models.FloatField(null = True, blank = True, validators=[MinValueValidator(0)])
-    #DEFINIR MODELO DE USUARIO CON BLOQUE A
-    #dueño = models.ForeignKey(???, on_delete = models.CASCADE)
+    dueño = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete = models.CASCADE, null = True, blank = True)
 
+# NULL Y BLANK TEMPORALES PARA DUEÑO
 
          
