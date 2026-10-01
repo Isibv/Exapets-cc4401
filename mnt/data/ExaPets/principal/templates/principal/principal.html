@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>
+       Historial clinico: {{mascota.nombre}} | Exapets
+    </title>
+    
+</head>
+<body>
+
+    <main>
+        <h1>
+            Historial clinico de {{mascota.nombre}}
+        </h1>
+        <p>
+            Especie: {{mascota.especie}} | Raza: {{mascota.raza}} | {{ mascota.edad }}
+        </p>
+        <a href="{% url 'formulario' %}">+ Agregar Antecedente</a>
+        <hr>
+
+        <section>
+            {%for item in historiales%}
+            <article>
+                <h3>{{ item.titulo }}</h3>
+                <p>{{ item.texto }}</p>
+                                <p> 
+                    {{item.fecha}} | {{item.hora}} 
+                    {{item.tipo}}
+                </p>
+            </article>
+            {%empty%}
+            <div>
+                <p>{{ mascota.nombre }} aún no registra antecedentes médicos cargados.</p>
+                <a href="#">+ Registrar el primer antecedente</a>
+            </div>
+            {%endfor%}
+        </section>
+    </main>
+    
+
+</body>
+</html>

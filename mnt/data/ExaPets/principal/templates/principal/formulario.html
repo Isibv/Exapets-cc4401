@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Registro de antecedente | ExaPets</title>
+</head>
+<body>
+    <p><a href="{% url 'home' %}">&larr; Volver al historial</a></p>
+    <h1> Registro de antecedente </h1>
+
+    <form id="antecedente" method="POST">
+        {% csrf_token %}
+
+        <div>
+            <label for="fecha"> Fecha: </label><br>
+            <input type="date" id="fecha" name = "fecha">
+            <span class="error" id = "error-fecha"></span>
+        </div>
+        <br>
+
+        <div>
+            <label for="hora"> Hora: </label><br>
+            <input type="time" id="hora" name="hora">
+            <span class="error" id = "error-hora"></span>
+        </div>
+        <br>
+
+        <div>
+            <label for="tipo">Tipo de atención:</label><br>
+            <textarea type="text" id="tipo" name="tipo" rows = "1" cols = "40"placeholder="Ej. Control preventivo, Vacuna, Urgencia" required></textarea>
+            <span class="error" id="error-tipo"></span>
+        </div>
+        <br>
+
+        <div>
+            <label for="situacion">Situación / Título:</label><br>
+            <textarea type="text" id="situacion" name="situacion" rows = "1" cols = "40" placeholder="Ej. Vacuna Séxtuple o Chequeo semestral" required></textarea>
+            <span class="error" id="error-situacion"></span>
+        </div>
+        <br>
+
+        <div>
+            <label for="informacion">Información clínica / Observaciones:</label><br>
+            <textarea id="informacion" name="informacion" rows="4" cols="40" placeholder="Resultados, diagnóstico, indicaciones..." required></textarea>
+            <span class="error" id="error-informacion"></span>
+        </div>
+        <br>
+
+        <button type="submit">Registrar antecedente</button>
+        <br>
+        <a href="{% url 'home' %}">Cancelar</a>
+    </form>
+
+</body>
+</html>
