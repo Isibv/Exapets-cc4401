@@ -11,6 +11,15 @@
     <header>
         <nav>
             <a href="{% url 'core:home' %}">ExaPets</a>
+            {% if user.is_authenticated %}
+                <span>Hola, {{ user.username }}</span>
+                <form method="post" action="{% url 'core:logout' %}">
+                    {% csrf_token %}
+                    <button type="submit">Cerrar sesión</button>
+                </form>
+            {% else %}
+                <a href="{% url 'core:login' %}">Iniciar sesión</a>
+            {% endif %}
         </nav>
     </header>
 

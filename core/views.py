@@ -1,4 +1,5 @@
 """Views for the core app: home page and account pages."""
+from django.contrib.auth.views import LoginView, LogoutView
 from django.views.generic import TemplateView
 
 
@@ -7,4 +8,13 @@ class HomeView(TemplateView):
     
     template_name = "core/home.html"
 
-# Create your views here.
+
+class UserLoginView(LoginView):
+    """Display the login form and sign the user in."""
+
+    template_name = "core/login.html"
+    redirect_authenticated_user = True
+
+
+class UserLogoutView(LogoutView):
+    """Sign the user out (POST only) and redirect to the login page."""
