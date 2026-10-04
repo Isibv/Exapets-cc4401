@@ -1,0 +1,42 @@
+{% extends 'mascotas/base_mascotas.html' %}
+
+{% block title %}{{ mascota.nombre }} - ExaPets{% endblock %}
+
+{% block content %}
+<a href="{% url 'mascotas:mis_mascotas' %}" class="text-decoration-none">&larr; Volver a mis mascotas</a>
+
+<div class="card card-exapet mt-3">
+    <div class="card-body">
+        <div class="d-flex align-items-center mb-3">
+            <h2 class="mb-0 me-3">{{ mascota.nombre }}</h2>
+            <span class="badge-exapet">{{ mascota.especie }}</span>
+        </div>
+
+        <dl class="row mb-0">
+            <dt class="col-sm-4">Raza</dt>
+            <dd class="col-sm-8">{{ mascota.raza|default:"No registrada" }}</dd>
+
+            <dt class="col-sm-4">Sexo</dt>
+            <dd class="col-sm-8">{{ mascota.get_sexo_display }}</dd>
+
+            <dt class="col-sm-4">Fecha de nacimiento</dt>
+            <dd class="col-sm-8">{{ mascota.fecha_de_nacimiento|date:"d/m/Y"|default:"No registrada" }}</dd>
+
+            <dt class="col-sm-4">Peso</dt>
+            <dd class="col-sm-8">{% if mascota.peso is not None %}{{ mascota.peso }} kg{% else %}No registrado{% endif %}</dd>
+        </dl>
+    </div>
+</div>
+
+{# Punto de entrada al historial. Cuando el área Historial tenga su URL, #}
+{# reemplazar este botón por: <a href="{% url 'historial:...' mascota.pk %}"> #}
+<div class="card card-exapet mt-3">
+    <div class="card-body d-flex justify-content-between align-items-center">
+        <div>
+            <h5 class="mb-1">Historial de {{ mascota.nombre }}</h5>
+            <span class="text-muted">Vacunas, exámenes y tratamientos.</span>
+        </div>
+    
+    </div>
+</div>
+{% endblock %}
