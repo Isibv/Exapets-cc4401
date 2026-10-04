@@ -120,3 +120,7 @@ MAILERS = {
 
 # Custom user model
 AUTH_USER_MODEL = "core.Usuario"
+
+# Redirecciones de Autenticación
+LOGIN_REDIRECT_URL = '/'      # A dónde va el usuario tras iniciar sesión exitosamente (ej. al inicio)
+LOGOUT_REDIRECT_URL = '/login/' # A dónde va el usuario después de cerrar sesión
