@@ -13,14 +13,14 @@
 
         <div>
             <label for="fecha"> Fecha: </label><br>
-            <input type="date" id="fecha" name = "fecha">
+            <input type="date" id="fecha" name = "fecha" required>
             <span class="error" id = "error-fecha"></span>
         </div>
         <br>
 
         <div>
             <label for="hora"> Hora: </label><br>
-            <input type="time" id="hora" name="hora">
+            <input type="time" id="hora" name="hora" required>
             <span class="error" id = "error-hora"></span>
         </div>
         <br>
@@ -51,5 +51,14 @@
         <a href="{% url 'home' %}">Cancelar</a>
     </form>
 
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const fechaInput = document.getElementById('fecha');
+            // Obtiene la fecha actual en formato YYYY-MM-DD
+            const hoy = new Date().toISOString().split('T')[0];
+            // Asigna la fecha máxima permitida al input
+            fechaInput.setAttribute('max', hoy);
+        });
+    </script>
 </body>
 </html>

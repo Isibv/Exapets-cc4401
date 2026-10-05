@@ -21,8 +21,8 @@
         <section>
             {%for item in historiales%}
             <article>
-                <h3>{{ item.titulo }}</h3>
-                <p>{{ item.texto }}</p>
+                <h3>{{ item.situacion }}</h3>
+                <p>{{ item.informacion }}</p>
                                 <p> 
                     {{item.fecha}} | {{item.hora}} 
                     {{item.tipo}}
@@ -31,7 +31,7 @@
             {%empty%}
             <div>
                 <p>{{ mascota.nombre }} aún no registra antecedentes médicos cargados.</p>
-                <a href="#">+ Registrar el primer antecedente</a>
+                <a href="{% url 'formulario' %}">+ Registrar el primer antecedente</a>
             </div>
             {%endfor%}
         </section>
