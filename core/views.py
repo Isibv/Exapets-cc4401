@@ -15,7 +15,7 @@ def registro(request):
     else:
         form = UserCreationForm()
     
-    return render(request, 'registration/registro.html', {'form': form})
+    return render(request, 'core/registro.html', {'form': form})
 """Views for the core app: home page and account pages."""
 
 
