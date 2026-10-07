@@ -120,3 +120,9 @@ MAILERS = {
 
 # Custom user model
 AUTH_USER_MODEL = "core.Usuario"
+
+
+# Autentication redirects (temporary: the home page until the pets list exists)
+LOGIN_URL = "core:login"
+LOGIN_REDIRECT_URL = "core:home"
+LOGOUT_REDIRECT_URL = "core:login"

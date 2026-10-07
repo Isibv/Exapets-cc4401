@@ -1,0 +1,14 @@
+{% extends "core/base.html" %}
+
+{% block title %}Iniciar sesión · ExaPets{% endblock %}
+
+{% block content %}
+    <h1>Iniciar sesión</h1>
+    <form method="post">
+        {% csrf_token %}
+        {# Keeps the page the user wanted to visit before being asked to log in #}
+        <input type="hidden" name="next" value="{{ next }}">
+        {{ form.as_p }}
+        <button type="submit">Entrar</button>
+    </form>
+{% endblock %}
