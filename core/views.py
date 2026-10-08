@@ -1,36 +1,46 @@
-from django.shortcuts import render, redirect
-from django.contrib.auth.forms import UserCreationForm
+"""Vistas de la app core: página de inicio y flujo de cuenta (registro, login y logout)."""
 from django.contrib import messages
 from django.contrib.auth.views import LoginView, LogoutView
+from django.shortcuts import redirect, render
 from django.views.generic import TemplateView
 
-def registro(request):
-    if request.method == 'POST':
-        form = UserCreationForm(request.POST)
-        if form.is_valid():
-            form.save()
-            messages.success(request, 'Cuenta creada exitosamente. Ya puedes iniciar sesión.')
-            # Redirige a la ruta 'login' que activaste en el paso 3
-            return redirect('login') 
-    else:
-        form = UserCreationForm()
-    
-    return render(request, 'core/registro.html', {'form': form})
-"""Views for the core app: home page and account pages."""
+from .forms import RegistroForm
 
 
 class HomeView(TemplateView):
-    """Landing page of ExaPets, with a short welcome text."""
-    
+    """Página de inicio de ExaPets, con un texto de bienvenida."""
+
     template_name = "core/home.html"
 
 
 class UserLoginView(LoginView):
-    """Display the login form and sign the user in."""
+    """Muestra el formulario de login e inicia la sesión del usuario."""
 
     template_name = "core/login.html"
     redirect_authenticated_user = True
 
 
 class UserLogoutView(LogoutView):
-    """Sign the user out (POST only) and redirect to the login page."""
+    """Cierra la sesión (solo por POST) y redirige a la página de login."""
+
+
+def registro(request):
+    """Crea una cuenta nueva.
+
+    Si el formulario es válido guarda el usuario y lo envía al login con un
+    mensaje de éxito; si no, vuelve a mostrar el formulario con los errores.
+    Un usuario que ya inició sesión es enviado directo a sus mascotas.
+    """
+    if request.user.is_authenticated:
+        return redirect("mascotas:mis_mascotas")
+
+    if request.method == "POST":
+        form = RegistroForm(request.POST)
+        if form.is_valid():
+            form.save()
+            messages.success(request, "Cuenta creada exitosamente. Ya puedes iniciar sesión.")
+            return redirect("core:login")
+    else:
+        form = RegistroForm()
+
+    return render(request, "core/registro.html", {"form": form})
