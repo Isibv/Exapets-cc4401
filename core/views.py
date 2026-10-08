@@ -4,7 +4,7 @@ from django.contrib.auth.views import LoginView, LogoutView
 from django.shortcuts import redirect, render
 from django.views.generic import TemplateView
 
-from .forms import RegistroForm
+from .forms import LoginForm, RegistroForm
 
 
 class HomeView(TemplateView):
@@ -17,6 +17,7 @@ class UserLoginView(LoginView):
     """Muestra el formulario de login e inicia la sesión del usuario."""
 
     template_name = "core/login.html"
+    authentication_form = LoginForm
     redirect_authenticated_user = True
 
 

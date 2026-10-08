@@ -1,8 +1,21 @@
 {% extends "core/base.html" %}
 
-{% block title %}Inicio · ExaPets{% endblock %}
+{% block title %}Inicio - ExaPets{% endblock %}
 
 {% block content %}
-    <h1>ExaPets</h1>
-    <p>Mantén al día el historial médico de tus mascotas.</p>
+<div class="card card-exapet text-center p-5">
+    <h1 class="mb-3">ExaPets</h1>
+    <p class="lead text-muted mb-4">Mantén al día el historial médico de tus mascotas.</p>
+
+    {% if user.is_authenticated %}
+        <div>
+            <a href="{% url 'mascotas:mis_mascotas' %}" class="btn btn-exapet-add">Ir a mis mascotas</a>
+        </div>
+    {% else %}
+        <div class="d-flex justify-content-center gap-2">
+            <a href="{% url 'core:login' %}" class="btn btn-exapet-add">Iniciar sesión</a>
+            <a href="{% url 'core:registro' %}" class="btn btn-outline-secondary">Crear cuenta</a>
+        </div>
+    {% endif %}
+</div>
 {% endblock %}
