@@ -1,0 +1,23 @@
+{% extends "core/base.html" %}
+
+{% block title %}Crear cuenta - ExaPets{% endblock %}
+
+{% block content %}
+<div class="form-container-exapet">
+    <div class="card card-exapet">
+        <div class="card-body p-4">
+            <h2 class="mb-4">Crear cuenta en ExaPets</h2>
+
+            <form method="post" novalidate>
+                {% csrf_token %}
+                {% include "core/_campos_formulario.html" %}
+                <button type="submit" class="btn btn-exapet-add w-100">Registrarse</button>
+            </form>
+
+            <p class="text-center text-muted mt-3 mb-0">
+                ¿Ya tienes cuenta? <a href="{% url 'core:login' %}">Iniciar sesión</a>
+            </p>
+        </div>
+    </div>
+</div>
+{% endblock %}

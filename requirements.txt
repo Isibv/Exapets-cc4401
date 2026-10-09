@@ -1,0 +1,7 @@
+# Agregar Django aquí cuando confirmemos la versión exigida por el curso.
+
+asgiref==3.12.1
+Django==6.1.1
+python-dotenv==1.2.3
+sqlparse==0.6.0
+tzdata==2026.4
